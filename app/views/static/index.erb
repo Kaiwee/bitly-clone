@@ -1,2 +1,59 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<container>
+	<div id="intro">
+		<h1>Welcome to Kwly</h1>
+		<p>Short link generator!</p>
+	</div>
+
+	<div id="bar">
+
+		<form class="form-inline" action="/submit-post" method="POST" id="url-form">
+			<input id="form-bootstrap-overrides" class="form-control input-lg" type="text" placeholder="Enter your URL" name="user-input">
+			<input class="btn btn-default btn-lg sharp" type="submit" value="Shorten">
+		</form>
+<!-- 		<p id="error"><%= @error %></p>
+		<p><%= @message %></p>
+		<p><%= @message2 %></p> -->
+
+	</div>
+
+	<div class="row row-centered">
+		<div class="col-md-4">
+			<span class="glyphicon glyphicon-duplicate iconformat"></span>
+			<p2>Copy your long link and paste</p2>
+		</div>
+		<div class="col-md-4">
+			<span class="glyphicon glyphicon-hand-up iconformat"></span>
+			<p2>Click shorten</p2>
+		</div>
+		<div class="col-md-4">
+			<span class="glyphicon glyphicon-sunglasses iconformat"></span>
+			<p2>Share Kwly link with friends!</p2>
+		</div>
+	</div>
+
+	<div class="recent_list">
+
+		<p>Here are your recently shortened URLs!</p>
+
+		<table class="table table-hover">
+			<thead>	
+				<tr>
+					<th>ID</th>
+					<th>Kwly</th>
+					<th>Site</th>
+					<th>Visit count</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @urls.each do |url|%>
+				<tr>
+					<td><%= url.id%></td>
+					<td><a href="/<%= url.short_url %>"><%= request.base_url+'/'+url.short_url %></a></td>
+					<td><%= url.long_url%></td>
+					<td><%= url.click_count%></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</container>
